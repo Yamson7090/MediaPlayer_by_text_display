@@ -1,7 +1,40 @@
 DON'T PRESS ENTER HERE!!! 绝对绝对不要在这里换行！！！
-#Write down your server host below. 在第三行写下你的mc服务器IP。
+Just write down in the next line of "#". 写到#的下一行就好。
+# Language "1"=zh-cn "0"=English
+#useless now#
+# Connect mode. Only Rcon write "0" and Rcon with mcfunction write "1".
 
-#Write down your server's Rcon port below. 在第五行写下你的Rcon端口。
+# Video or image? "0"=video "1"=image others=ask_when_start
+
+# Use the location below? "1"=Yes others=No
+
+
+location:
+# x
+0
+# y
+100
+# z
+0
+
+Rcon Settings:
+# server host 服务器IP
+
+# Rcon port Rcon端口
 25575
-#Write down your rcon password below. 在第七行写下你的Rcon密码。
+# rcon password Rcon密码
+
+
+Image Settings:
+# width (Height depend on width.) Please let width < 45 if Rcon mode.
+44
+
+Video Settings:
+# max fps
+5
+# width (Height depend on width.) Please let width < 45 if Rcon mode.
+44
+
+Mcfunction setting:
+# The folder of the Minecraft_server_main_jar file
 
