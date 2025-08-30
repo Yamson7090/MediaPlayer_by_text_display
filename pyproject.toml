@@ -1,5 +1,5 @@
 [project]
-name = "MP_text_display_4030"
+name = "MediaPlayer_by_text_display"
 version ="1.0.0"
 dependencies = [
     "ffmpeg-progress-yield>=1.0.2",
