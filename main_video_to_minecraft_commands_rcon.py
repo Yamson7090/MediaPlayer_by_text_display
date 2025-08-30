@@ -53,9 +53,6 @@ video_name = "2"
 frame = "3" + ".jpg"
 print(Path("output") / video_name / frame)
 """
-video_path = input("输入视频路径：")
-this_output_dir = Path("output") / Path(video_path)
-frame_pathes = video_to_images(input_path = video_path)
 
 # 读取配置，若不存在则写入
 with open("config.txt", "r", encoding="utf-8") as f:
@@ -75,5 +72,10 @@ if lines[6] == "\n":
     with open("config.txt", "w", encoding="utf-8") as f:
         f.writelines(lines)
 password = str(lines[6].strip())
+
+# 输入路径
+video_path = input("输入视频路径：")
+this_output_dir = Path("output") / Path(video_path)
+frame_pathes = video_to_images(input_path = video_path)
 
 images_to_minecraft_commands(frame_pathes = frame_pathes, host = host, port = port, password = password)
