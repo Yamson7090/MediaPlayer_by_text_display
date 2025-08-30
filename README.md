@@ -2,3 +2,5 @@
 A Python software to show images or play videos in Minecraft server by using Rcon/pipe.
 
 **DON'T PRESS ENTER IN config.txt.**
+
+Before beginning,you should download Ffmpeg and add the file bin to the system PATH.
