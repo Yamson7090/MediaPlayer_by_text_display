@@ -4,7 +4,7 @@ from tqdm import tqdm
 from pathlib import Path
 
 #生成的总帧数不得大于999999
-def video_to_frames(input_path,output_dir = "output",fps=5, width=40):
+def video_to_frames(input_path,output_dir = "output",fps=5, width=45):
     """
     input_path: 输入视频路径
     output_dir: 输出目录
@@ -20,7 +20,7 @@ def video_to_frames(input_path,output_dir = "output",fps=5, width=40):
     file_name = Path(input_path)
     output_dir = Path("output") / "jpgs" / file_name.stem
     """
-    this_output_dir = Path(output_dir) / Path(input_path).stem
+    this_output_dir = Path(output_dir) / (Path(input_path).stem + "_fps=" + str(fps) + "_width=" + str(width))
 
     os.makedirs(this_output_dir, exist_ok=True)
     output_pattern = os.path.join(this_output_dir, "%06d.jpg")
@@ -42,15 +42,17 @@ def video_to_frames(input_path,output_dir = "output",fps=5, width=40):
             pbar.update(progress - pbar.n)
 
     # 生成图片序列
-    frame_pathes = sorted([os.path.join(this_output_dir, f)
+    frame_paths = sorted([os.path.join(this_output_dir, f)
                           for f in os.listdir(this_output_dir)
                           if f.endswith(".jpg")])
 
+    """
     # 写入图片序列
-    with open(this_output_dir / "frame_pathes.txt", "w", encoding="utf-8") as f:
-        f.write(str(frame_pathes))
+    with open(this_output_dir / "frame_paths.txt", "w", encoding="utf-8") as f:
+        f.write(str(frame_paths))
+    """
 
-    return frame_pathes
+    return frame_paths
 
 """
 video_to_images(input_path,output_dir)
