@@ -4,7 +4,7 @@ from pathlib import Path
 import time
 import mcrcon
 
-def video_rcon(frame_pathes):
+def video_rcon(frame_paths):
 
     # 读取配置，若不存在则写入
     with open("config.txt", "r", encoding="utf-8") as f:
@@ -35,7 +35,7 @@ def video_rcon(frame_pathes):
     with mcrcon.MCRcon(host = host, port = port, password = password) as rcon:
         # 开始计时
         start_time = time.time()
-        for frame_path in frame_pathes:
+        for frame_path in frame_paths:
 
             # 开始计时
             #frame_start_time = time.time()
@@ -71,6 +71,6 @@ print(Path("output") / video_name / frame)
 
 # 输入原视频路径并获取生成的每帧的路径
 video_path = input("输入视频路径：")
-frame_pathes = video_to_frames(input_path=video_path)
+frame_path_s = video_to_frames(input_path=video_path)
 
-video_rcon(frame_pathes = frame_pathes)
+video_rcon(frame_paths = frame_path_s)

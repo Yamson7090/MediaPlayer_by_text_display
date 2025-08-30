@@ -34,7 +34,7 @@ def image_to_minecraft_commands_for_picture(image_path, base_x=100, base_y=100, 
             f"summon text_display "
             f"{base_x} {base_y + 0.14*(img.height - y)} {base_z} "
             f"{{"
-            f"CustomName:'image',"
+            f"CustomName:image,"
             f"line_width:{img.width * 6},"#根据像素数动态计算行宽
             f"background:-16777216,"#纯黑背景
             f"brightness:{{block:12,sky:12}},"#亮度
