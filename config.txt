@@ -1,0 +1,7 @@
+DON'T PRESS ENTER HERE!!! 绝对绝对不要在这里换行！！！
+#Write down your server host below. 在第三行写下你的mc服务器IP。
+
+#Write down your server's Rcon port below. 在第五行写下你的Rcon端口。
+25575
+#Write down your rcon password below. 在第七行写下你的Rcon密码。
+
