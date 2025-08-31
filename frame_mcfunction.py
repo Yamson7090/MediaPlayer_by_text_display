@@ -33,14 +33,14 @@ def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path
                 text_components = f"{text_components}{{text:'■',color:'{hex_color}'}}"
 
         # 构建整行指令
-        command_kill = (
+        command = (
             f"kill @e[type=text_display,name='{before_last}_{y}']\n"
         )
         #print(command)
-        commands_kill.append(command_kill)
+        commands.append(command)
         command = (
             f"summon text_display "
-            f"{base_x} {base_y + 0.14*(img.height - y)} {base_z} "
+            f"{int(base_x)} {int(base_y) + 0.14*(img.height - y)} {int(base_z)} "
             f"{{"
             f"CustomName:'{int(img_name)}_{y}',"
             f"line_width:{img.width * 6},"#根据像素数动态计算行宽
@@ -53,6 +53,6 @@ def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path
         commands.append(command)
 
     with open(Path(server_path) / "world" / "datapacks" / "MP" / "data" / "video" / "function" / (Path(image_path).stem + ".mcfunction"), "w", encoding="utf-8") as f:
-        f.writelines(commands_kill + commands)
+        f.writelines(commands)
 
-    return ["reload", "function video:" + Path(image_path).stem]
+    #return ["reload", "function video:" + Path(image_path).stem]

@@ -72,7 +72,7 @@ def image(image_path, base_x=100, base_y=100, base_z=100):
         # 构建整行指令
         command = (
             f"summon text_display "
-            f"{base_x} {base_y + 0.14*(img.height - y)} {base_z} "
+            f"{int(base_x)} {int(base_y) + 0.14*(img.height - y)} {int(base_z)} "
             f"{{"
             f"CustomName:image,"
             f"line_width:{img.width * 6},"#根据像素数动态计算行宽
@@ -116,7 +116,7 @@ def image_mcfunction(image_path, server_path, base_x=100, base_y=100, base_z=100
         # 构建整行指令
         command = (
             f"summon text_display "
-            f"{base_x} {base_y + 0.14*(img.height - y)} {base_z} "
+            f"{int(base_x)} {int(base_y) + 0.14*(img.height - y)} {int(base_z)} "
             f"{{"
             f"CustomName:image,"
             f"line_width:{img.width * 6},"#根据像素数动态计算行宽

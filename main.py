@@ -107,6 +107,7 @@ if work_mode == "0\n" :
     if connect_mode == "0\n" :
         video_rcon(frame_paths=frame_path_s, config = config_txt, xx = x, yy = y, zz = z)
     elif connect_mode == "1\n" :
+        shutil.copytree("mcpack_for_mcfunction/MP", Path(config_txt[39].strip()) / "world" / "datapacks" / "MP")
         video_mcfunction(frame_paths=frame_path_s, config = config_txt, xx = x, yy = y, zz = z)
 
 elif work_mode == "1\n" :
