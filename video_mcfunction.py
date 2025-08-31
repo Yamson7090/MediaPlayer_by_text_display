@@ -35,32 +35,34 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
         last = 0
         # 本帧序号
         this = 0
-        # 开始计时
-        start_time = time.time()
         for frame_path in frame_paths:
             frame_path_s.append(frame_mcfunction(image_path=frame_path, before_last=last, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip()))
             last = this
             this = int(Path(frame_path).stem)
 
         rcon.command("reload")
+        time.sleep(11)
+        # 开始计时
+        start_time = time.time()
 
-        for frame_path in frame_paths:
+        #for frame_path in frame_paths:
 
             # 开始计时
             # frame_start_time = time.time()
 
             # print(Path("output") / video_name / frame_name)
-
-            if time.time() - start_time <= 1.00 / fps * int(Path(frame_path).stem) - 0.70 / fps:
-                # 生成本帧指令并发送
-                # rcon.command("kill @e[type=text_display]")
-                if time.time() - start_time < 1.00 / fps * int(Path(frame_path).stem) - 1.00 / fps:
-                    delay = 1.00 / fps * int(Path(frame_path).stem) - 0.95 / fps + start_time - time.time()
+        # 计数
+        num = 1
+        for x in frame_path_s:
+            if time.time() - start_time <= 1.00 / fps * num - 0.70 / fps:
+                rcon.command(x)
+                if time.time() - start_time < 1.00 / fps * num :
+                    delay = 1.00 / fps * num + start_time - time.time()
                     time.sleep(delay)
+            num = num + 1
 
 
-                for x in frame_path_s:
-                    rcon.command(x)
+
 
 
 
