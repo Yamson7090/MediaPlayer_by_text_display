@@ -26,7 +26,7 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
     fps = int(config[33].strip())
 
     # skip = 0
-    output = "output"
+    #output = "output"
 
     # 用循环一帧一帧处理
     with (mcrcon.MCRcon(host=host, port=port, password=password) as rcon):
@@ -38,6 +38,10 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
         start_time = time.time()
         for frame_path in frame_paths:
             frame_mcfunction(image_path=frame_path, before_last=last, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip())
+            last = this
+            this = int(Path(frame_path).stem)
+
+        rcon.command("reload")
 
         for frame_path in frame_paths:
 
@@ -58,8 +62,7 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
                               if f.endswith(".mcfunction")]):
                     rcon.command(x)
 
-                last = this
-                this = int(Path(frame_path).stem)
+
 
         rcon.command("kill @e[type=text_display,name=!image]")
 
