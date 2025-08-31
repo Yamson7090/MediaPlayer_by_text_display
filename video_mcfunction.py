@@ -41,7 +41,8 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
             this = int(Path(frame_path).stem)
 
         rcon.command("reload")
-        time.sleep(11)
+        input("等待直至你的服务器显示重载完毕然后随便输入什么以继续")
+        time.sleep(5)
         # 开始计时
         start_time = time.time()
 
