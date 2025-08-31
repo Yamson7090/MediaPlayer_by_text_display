@@ -113,4 +113,5 @@ if work_mode == "0\n" :
 elif work_mode == "1\n" :
     if connect_mode == "0\n" :
         image(image_path=input("请先处理原图使其宽度缩小！\n请输入图片路径："), base_x=x, base_y=y, base_z=z)
+    elif connect_mode == "1\n" :
         image_mcfunction(image_path=input("请先处理原图使其宽度缩小！\n请输入图片路径："), server_path =config_txt[39].strip(), base_x=x, base_y=y, base_z=z)
