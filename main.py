@@ -93,7 +93,7 @@ else:
     z = int(input("请输入z坐标：\n"))
 
 if work_mode == "0\n" :
-    fps_in = (config_txt[33]).strip()
+    fps_in = config_txt[33].strip()
     width_in = config_txt[35].strip()
     video_path = input("输入视频路径：")
     #获取frame_paths

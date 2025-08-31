@@ -3,7 +3,7 @@ from frame_mcfunction import frame_mcfunction
 from pathlib import Path
 import time
 import mcrcon
-import os
+
 
 def video_mcfunction(frame_paths, config, xx, yy, zz):
     # 读取配置，若不存在则写入
@@ -27,6 +27,7 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
 
     # skip = 0
     #output = "output"
+    frame_path_s = []
 
     # 用循环一帧一帧处理
     with (mcrcon.MCRcon(host=host, port=port, password=password) as rcon):
@@ -37,7 +38,7 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
         # 开始计时
         start_time = time.time()
         for frame_path in frame_paths:
-            frame_mcfunction(image_path=frame_path, before_last=last, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip())
+            frame_path_s.append(frame_mcfunction(image_path=frame_path, before_last=last, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip()))
             last = this
             this = int(Path(frame_path).stem)
 
@@ -57,9 +58,8 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
                     delay = 1.00 / fps * int(Path(frame_path).stem) - 0.95 / fps + start_time - time.time()
                     time.sleep(delay)
 
-                for x in  sorted([os.path.join(Path(config[39].strip()) / "world" / "datapacks" / "MP" / "data" / "video" / "function", f)
-                              for f in os.listdir(Path(config[39].strip()) / "world" / "datapacks" / "MP" / "data" / "video" / "function")
-                              if f.endswith(".mcfunction")]):
+
+                for x in frame_path_s:
                     rcon.command(x)
 
 
