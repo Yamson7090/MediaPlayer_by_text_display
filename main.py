@@ -97,7 +97,7 @@ if work_mode == "0\n" :
     width_in = config_txt[35].strip()
     video_path = input("输入视频路径：")
     #获取frame_paths
-    if os.path.isdir(Path(output) / (Path(video_path).stem + "_fps=" + str(fps_in) + "_width=" + str(width_in))):
+    if os.path.isdir(Path(output) / (Path(video_path).stem + "_fps=" + str(fps_in) + "_width=" + str(width_in))) and os.path.isfile(Path(output) / (Path(video_path).stem + "_fps=" + str(fps_in) + "_width=" + str(width_in)) / "000001.jpg"):
         frame_path_s = sorted([os.path.join(Path(output) / (Path(video_path).stem + "_fps=" + str(fps_in) + "_width=" + str(width_in)), f)
                               for f in os.listdir(Path(output) / (Path(video_path).stem + "_fps=" + str(fps_in) + "_width=" + str(width_in)))
                               if f.endswith(".jpg")])
