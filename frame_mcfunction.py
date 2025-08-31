@@ -13,6 +13,10 @@ def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path
     img = Image.open(image_path)
     pixels = img.load()
     commands = []
+    command = (
+        f"kill @e[type=text_display,name='{before_last}']\n"
+    )
+    commands.append(command)
     #commands_kill = []
     img_name = Path(image_path).stem
 
@@ -32,17 +36,13 @@ def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path
             else :
                 text_components = f"{text_components}{{text:'■',color:'{hex_color}'}}"
 
-        # 构建整行指令
-        command = (
-            f"kill @e[type=text_display,name='{before_last}_{y}']\n"
-        )
         #print(command)
-        commands.append(command)
+        # 构建整行指令
         command = (
             f"summon text_display "
             f"{int(base_x)} {int(base_y) + 0.14*(img.height - y)} {int(base_z)} "
             f"{{"
-            f"CustomName:'{int(img_name)}_{y}',"
+            f"CustomName:'{int(img_name)}',"
             f"line_width:{img.width * 6},"#根据像素数动态计算行宽
             f"background:-16777216,"#纯黑背景
             f"brightness:{{block:12,sky:12}},"#亮度

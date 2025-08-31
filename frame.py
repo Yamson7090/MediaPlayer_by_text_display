@@ -13,6 +13,10 @@ def frame(image_path,before_last, base_x=100, base_y=100, base_z=100):
     img = Image.open(image_path)
     pixels = img.load()
     commands = []
+    command = (
+        f"kill @e[type=text_display,name='{before_last}']"
+    )
+    commands.append(command)
     img_name = Path(image_path).stem
 
     # 遍历每一行像素
@@ -31,17 +35,15 @@ def frame(image_path,before_last, base_x=100, base_y=100, base_z=100):
             else :
                 text_components = f"{text_components}{{text:'■',color:'{hex_color}'}}"
 
-        # 构建整行指令
-        command = (
-            f"kill @e[type=text_display,name='{before_last}_{y}']"
-        )
+
         #print(command)
-        commands.append(command)
+
+        # 构建整行指令
         command = (
             f"summon text_display "
             f"{int(base_x)} {int(base_y) + 0.14*(img.height - y)} {int(base_z)} "
             f"{{"
-            f"CustomName:'{int(img_name)}_{y}',"
+            f"CustomName:'{int(img_name)}',"
             f"line_width:{img.width * 6},"#根据像素数动态计算行宽
             f"background:-16777216,"#纯黑背景
             f"brightness:{{block:12,sky:12}},"#亮度

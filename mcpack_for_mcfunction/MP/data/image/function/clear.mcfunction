@@ -1,0 +1,1 @@
+kill @e[type=text_display,name="image"]
