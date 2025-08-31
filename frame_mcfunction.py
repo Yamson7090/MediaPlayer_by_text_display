@@ -2,8 +2,8 @@ from PIL import Image
 from pathlib import Path
 #import mcrcon
 
-#最大宽度为44，若调整了指令生成，可能变动
-def frame(image_path,before_last, base_x=100, base_y=100, base_z=100):
+
+def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path):
     """
     将图片转换为Minecraft文本展示实体指令（每行像素生成一个实体）
     image_path: 图片路径
@@ -13,6 +13,7 @@ def frame(image_path,before_last, base_x=100, base_y=100, base_z=100):
     img = Image.open(image_path)
     pixels = img.load()
     commands = []
+    commands_kill = []
     img_name = Path(image_path).stem
 
     # 遍历每一行像素
@@ -32,11 +33,11 @@ def frame(image_path,before_last, base_x=100, base_y=100, base_z=100):
                 text_components = f"{text_components}{{text:'■',color:'{hex_color}'}}"
 
         # 构建整行指令
-        command = (
-            f"kill @e[type=text_display,name='{before_last}_{y}']"
+        command_kill = (
+            f"kill @e[type=text_display,name='{before_last}_{y}']\n"
         )
         #print(command)
-        commands.append(command)
+        commands_kill.append(command_kill)
         command = (
             f"summon text_display "
             f"{base_x} {base_y + 0.14*(img.height - y)} {base_z} "
@@ -46,13 +47,12 @@ def frame(image_path,before_last, base_x=100, base_y=100, base_z=100):
             f"background:-16777216,"#纯黑背景
             f"brightness:{{block:12,sky:12}},"#亮度
             f"text:[{text_components}]"
-            f"}}"
+            f"}}\n"
         )
         #print(command)
         commands.append(command)
 
-    return commands
+    with open(Path(server_path) / "world" / "datapacks" / "MP" / "data" / "video" / "function" / (Path(image_path).stem + ".mcfunction"), "w", encoding="utf-8") as f:
+        f.writelines(commands_kill + commands)
 
-
-
-#print(image_to_minecraft_commands(image_path = input(":")))
+    return ["reload", "function video:" + Path(image_path).stem]

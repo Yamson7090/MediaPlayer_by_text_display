@@ -1,5 +1,45 @@
 from PIL import Image
+from pathlib import Path
 #import mcrcon
+
+"""
+
+def rcon_host():
+    # 加载配置文件
+    with open("config.txt", "r", encoding="utf-8") as f:
+        config = f.readlines()
+        
+    # 读取配置，若不存在则写入
+    if config[21] == "\n":
+        config[21] = str(input("请输入您的服务器IP：\nPlease write down your server IP here:")) + "\n"
+        with open("config.txt", "w", encoding="utf-8") as f:
+            f.writelines(config)
+    return str(config[21].strip())
+    
+def rcon_pot():
+    # 加载配置文件
+    with open("config.txt", "r", encoding="utf-8") as f:
+        config = f.readlines()
+        
+    # 读取配置，若不存在则写入
+    if config[23] == "\n":
+        config[23] = str(input("请输入您的Rcon端口：\nPlease write down your Rcon port here:")) + "\n"
+        with open("config.txt", "w", encoding="utf-8") as f:
+            f.writelines(config)
+    return int(config[23].strip())
+    
+def rcon_password():
+    # 加载配置文件
+    with open("config.txt", "r", encoding="utf-8") as f:
+        config = f.readlines()
+        
+    # 读取配置，若不存在则写入
+    if config[25] == "\n":
+        config[25] = str(input("请输入您的Rcon密码：\nPlease write down your Rcon password here:")) + "\n"
+        with open("config.txt", "w", encoding="utf-8") as f:
+            f.writelines(config)
+    return str(config[25].strip())
+"""
 
 #最大宽度为44，若调整了指令生成，可能变动
 def image(image_path, base_x=100, base_y=100, base_z=100):
@@ -45,7 +85,8 @@ def image(image_path, base_x=100, base_y=100, base_z=100):
 
     return commands
 
-def image_mcfunction(image_path, base_x=100, base_y=100, base_z=100):
+
+def image_mcfunction(image_path, server_path, base_x=100, base_y=100, base_z=100):
     """
     将图片转换为Minecraft文本展示实体指令（每行像素生成一个实体）
     image_path: 图片路径
@@ -86,7 +127,9 @@ def image_mcfunction(image_path, base_x=100, base_y=100, base_z=100):
         )
         commands.append(command)
 
-    return commands
+    with open(Path(server_path) / "world" / "datapacks" / "MP" / "data" / "image" / "function" / "image.mcfunction", "w", encoding="utf-8") as f:
+        f.writelines(commands)
+    return ["reload","function image:image"]
 
 #print(image_to_minecraft_commands(image_path = input(":")))
 

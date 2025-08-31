@@ -4,7 +4,7 @@ from tqdm import tqdm
 from pathlib import Path
 
 #生成的总帧数不得大于999999
-def video_to_frames(input_path, output_dir = "output", fps, width):
+def video_to_frames(input_path, fps, width, output_dir = "output"):
     """
     input_path: 输入视频路径
     output_dir: 输出目录
@@ -46,11 +46,6 @@ def video_to_frames(input_path, output_dir = "output", fps, width):
                           for f in os.listdir(this_output_dir)
                           if f.endswith(".jpg")])
 
-    """
-    # 写入图片序列
-    with open(this_output_dir / "frame_paths.txt", "w", encoding="utf-8") as f:
-        f.write(str(frame_paths))
-    """
 
     return frame_paths
 
