@@ -13,7 +13,7 @@ def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path
     img = Image.open(image_path)
     pixels = img.load()
     commands = []
-    commands_kill = []
+    #commands_kill = []
     img_name = Path(image_path).stem
 
     # 遍历每一行像素
