@@ -1,6 +1,6 @@
 from frame_mcfunction import frame_mcfunction
 #from video_to_frames import video_to_frames
-from pathlib import Path
+#from pathlib import Path
 import time
 import mcrcon
 
@@ -31,14 +31,9 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
 
     # 用循环一帧一帧处理
     with (mcrcon.MCRcon(host=host, port=port, password=password) as rcon):
-        # 上一帧序号
-        last = 0
-        # 本帧序号
-        this = 0
+
         for frame_path in frame_paths:
             function_starters.append(frame_mcfunction(image_path=frame_path, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip()))
-            last = this
-            this = int(Path(frame_path).stem)
 
         rcon.command("reload")
         input("等待直至你的服务器显示重载完毕然后随便输入什么以继续")
@@ -66,11 +61,6 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
                     delay = 1.00 / fps * num + start_time - time.time()
                     time.sleep(delay)
             num = num + 1
-
-
-
-
-
 
         rcon.command("kill @e[type=text_display,name=!image]")
 
