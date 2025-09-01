@@ -36,7 +36,7 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
         # 本帧序号
         this = 0
         for frame_path in frame_paths:
-            function_starters.append(frame_mcfunction(image_path=frame_path, before_last=last, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip()))
+            function_starters.append(frame_mcfunction(image_path=frame_path, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip()))
             last = this
             this = int(Path(frame_path).stem)
 

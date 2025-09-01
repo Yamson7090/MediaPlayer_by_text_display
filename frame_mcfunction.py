@@ -3,7 +3,7 @@ from pathlib import Path
 #import mcrcon
 
 
-def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path):
+def frame_mcfunction(image_path, base_x, base_y, base_z, server_path):
     """
     将图片转换为Minecraft文本展示实体指令（每行像素生成一个实体）
     image_path: 图片路径
@@ -13,10 +13,10 @@ def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path
     img = Image.open(image_path)
     pixels = img.load()
     commands = []
-    command = (
-        f"kill @e[type=text_display,name='{before_last}']\n"
-    )
-    commands.append(command)
+    #command = (
+    #    f"kill @e[type=text_display,name='{before_last}']\n"
+    #)
+    #commands.append(command)
     #commands_kill = []
     img_name = Path(image_path).stem
 
