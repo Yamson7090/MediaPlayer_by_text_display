@@ -55,4 +55,4 @@ def frame_mcfunction(image_path,before_last, base_x, base_y, base_z, server_path
     with open(Path(server_path) / "world" / "datapacks" / "MP" / "data" / "video" / "function" / (Path(image_path).stem + ".mcfunction"), "w", encoding="utf-8") as f:
         f.writelines(commands)
 
-    return "function video:" + Path(image_path).stem
+    return Path(image_path).stem

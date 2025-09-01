@@ -27,7 +27,7 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
 
     # skip = 0
     #output = "output"
-    frame_path_s = []
+    function_starters = []
 
     # 用循环一帧一帧处理
     with (mcrcon.MCRcon(host=host, port=port, password=password) as rcon):
@@ -36,7 +36,7 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
         # 本帧序号
         this = 0
         for frame_path in frame_paths:
-            frame_path_s.append(frame_mcfunction(image_path=frame_path, before_last=last, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip()))
+            function_starters.append(frame_mcfunction(image_path=frame_path, before_last=last, base_x=xx, base_y=yy, base_z=zz,server_path=config[39].strip()))
             last = this
             this = int(Path(frame_path).stem)
 
@@ -54,9 +54,14 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
             # print(Path("output") / video_name / frame_name)
         # 计数
         num = 1
-        for x in frame_path_s:
+        last_function = 0
+        #before_last_function = ""
+        for x in function_starters:
             if time.time() - start_time <= 1.00 / fps * num - 0.70 / fps:
-                rcon.command(x)
+                rcon.command("function video:" + x)
+                rcon.command("kill @e[type=text_display,name=" + str(last_function) + "]")
+                #before_last_function = last_function
+                last_function = int(x)
                 if time.time() - start_time < 1.00 / fps * num :
                     delay = 1.00 / fps * num + start_time - time.time()
                     time.sleep(delay)
