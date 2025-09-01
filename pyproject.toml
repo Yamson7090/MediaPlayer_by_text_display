@@ -1,6 +1,6 @@
 [project]
 name = "MediaPlayer_by_text_display"
-version ="2.0.1"
+version ="2.1.1"
 dependencies = [
     "ffmpeg-progress-yield>=1.0.2",
     "mcrcon>=0.7.0",
