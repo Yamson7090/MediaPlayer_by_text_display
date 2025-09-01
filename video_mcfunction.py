@@ -50,12 +50,12 @@ def video_mcfunction(frame_paths, config, xx, yy, zz):
         # 计数
         num = 1
         last_function = 0
-        #before_last_function = ""
+        before_last_function = ""
         for x in function_starters:
             if time.time() - start_time <= 1.00 / fps * num - 0.70 / fps:
                 rcon.command("function video:" + x)
-                rcon.command("kill @e[type=text_display,name=" + str(last_function) + "]")
-                #before_last_function = last_function
+                rcon.command("kill @e[type=text_display,name=" + str(before_last_function) + "]")
+                before_last_function = last_function
                 last_function = int(x)
                 if time.time() - start_time < 1.00 / fps * num :
                     delay = 1.00 / fps * num + start_time - time.time()
