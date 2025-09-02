@@ -1,5 +1,5 @@
 # MediaPlayer_by_text_display
-A Python software to show images or play videos in Minecraft server by using Rcon/pipe.  
+A Python software to show images or play videos in Java Minecraft server by using text_display.  
 
 ## DON'T PRESS ENTER IN config.txt FOREVER!!!  
 
